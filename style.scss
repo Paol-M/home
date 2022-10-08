@@ -193,6 +193,7 @@ abbr {
 
 $lighter: lighten($background, 10);
 ::-webkit-scrollbar {
+  // dark mode
   width: 0.8rem;
   background-color: $lighter;
 
@@ -203,12 +204,37 @@ $lighter: lighten($background, 10);
   }
 }
 $darker: darken($lightBackground, 10);
-body:has(#theme:not(:checked))::-webkit-scrollbar{
+body:has(#theme:not(:checked))::-webkit-scrollbar {
+  // light mode
   background-color: $darker;
   &-thumb {
     background: #006d31;
     border-radius: 16px;
     border: $darker solid 2px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body:has(#theme:not(:checked))::-webkit-scrollbar {
+    // dark mode
+    width: 0.8rem;
+    background-color: $lighter;
+
+    &-thumb {
+      background: $primary;
+      border-radius: 16px;
+      border: $lighter solid 2px;
+    }
+  }
+
+  body:has(#theme:checked)::-webkit-scrollbar {
+    // light mode
+    background-color: $darker;
+    &-thumb {
+      background: #006d31;
+      border-radius: 16px;
+      border: $darker solid 2px;
+    }
   }
 }
 
@@ -220,7 +246,7 @@ body {
 
 #main {
   svg {
-    width: 3rem; // same as that of text next to it
+    width: 3rem;
     position: relative;
 
     rect {
