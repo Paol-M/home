@@ -11,6 +11,8 @@ $secondary: #b7ccb7;
 $on-secondary: #233425;
 $tertiary-container: #204d56;
 
+$lightBackground: #fbfdf7;
+
 @mixin marginInline {
   width: 90vw;
   max-width: 1100px;
@@ -61,7 +63,8 @@ $tertiary-container: #204d56;
     }
   }
 
-  #theme ~ #page { //chrome :(
+  #theme ~ #page {
+    //chrome :(
     --background: #fbfdf7;
     --on-background: #1a1c19;
     --primary: #006d31;
@@ -188,14 +191,24 @@ abbr {
   background-color: var(--primary);
 }
 
+$lighter: lighten($background, 10);
 ::-webkit-scrollbar {
   width: 0.8rem;
-  background-color: $background;
+  background-color: $lighter;
 
   &-thumb {
     background: $primary;
     border-radius: 16px;
-    border: $background solid 2px;
+    border: $lighter solid 2px;
+  }
+}
+$darker: darken($lightBackground, 10);
+body:has(#theme:not(:checked))::-webkit-scrollbar{
+  background-color: $darker;
+  &-thumb {
+    background: #006d31;
+    border-radius: 16px;
+    border: $darker solid 2px;
   }
 }
 
@@ -203,7 +216,6 @@ body {
   margin: 0;
   display: grid;
   min-height: 100vh;
-  
 }
 
 #main {
@@ -515,7 +527,7 @@ body {
 
 @media screen and (max-width: 230px) {
   #main {
-    &>img {
+    & > img {
       width: 70vw;
     }
   }
