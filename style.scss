@@ -155,7 +155,7 @@ $lightBackground: #fbfdf7;
 html {
   margin: 0;
   padding: 0;
-  font-family: "Ubuntu", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 * {
@@ -464,11 +464,14 @@ body {
     rotate: 10deg;
     position: absolute;
     top: -10px;
-    right: 10px;
+    right: 30px;
   }
-  .goTo svg {
-    background-color: var(--secondary);
-    fill: var(--on-secondary);
+  .goTo {
+    margin-top: 1em;
+    svg {
+      background-color: var(--secondary);
+      fill: var(--on-secondary);
+    }
   }
 }
 
@@ -483,8 +486,20 @@ body {
     grid-template-columns: auto;
 
     & > img {
-      margin-inline: auto;
+      margin: 3em auto;
     }
+  }
+
+  #🐷 {
+    overflow: hidden;
+
+    img {
+      display: none;
+    }
+  }
+  
+  .🐷_SVG {
+    min-width: 110vw;
   }
 
   .links {
