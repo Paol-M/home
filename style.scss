@@ -1,4 +1,4 @@
-$borderRadius: 1em;
+$borderRadius: 32px;
 $background: #1a1c19;
 $on-background: #e2e3de;
 $primary: #5bdf83;
@@ -48,7 +48,7 @@ $lightBackground: #fbfdf7;
 }
 
 @media (prefers-color-scheme: light) {
-  #theme ~ #page .toggle > svg {
+  #theme ~ #page .themeToggle {
     rect {
       transform: rotate(2turn) scale(0);
     }
@@ -81,7 +81,7 @@ $lightBackground: #fbfdf7;
     // --on-tertiary-container: #001b3c;
   }
 
-  #theme:checked ~ #page .toggle > svg {
+  #theme:checked ~ #page .themeToggle {
     rect {
       transform: initial;
       & + rect {
@@ -173,13 +173,15 @@ html {
   color: var(--on-background);
 }
 
-a {
-  color: inherit;
+h1,
+h2,
+h3,
+p {
+  margin: 0;
 }
 
-h2 {
-  margin-block: 2rem;
-  font-weight: bold;
+a {
+  color: inherit;
 }
 
 abbr {
@@ -244,35 +246,45 @@ body {
   min-height: 100vh;
 }
 
-#main {
-  svg {
-    width: 3rem;
-    position: relative;
+// aside {
+//   border-radius: $borderRadius;
+//   margin-top: 2.5%;
+//   margin-inline: 10%;
+//   padding: 2em;
+//   background-color: var(--secondary-container);
+//   color: var(--on-secondary-container);
+// }
 
-    rect {
-      transition: transform 500ms;
-      transform-origin: center;
-      & + rect {
-        transform: rotate(45deg);
-        transition: transform 450ms;
-      }
-    }
+.info p {
+  font-size: 1.3rem;
 
-    circle {
-      transition: transform 600ms;
-      transform-origin: center;
-      transform-box: fill-box;
-      & + circle {
-        transform: scale(0);
-      }
+}
+
+.themeToggle {
+  width: 3rem;
+  position: relative;
+  transition: scale 120ms ease-in;
+
+  &:hover {
+    scale: 1.2;
+  }
+
+  rect {
+    transition: transform 500ms;
+    transform-origin: center;
+    & + rect {
+      transform: rotate(45deg);
+      transition: transform 450ms;
     }
   }
 
-  p {
-    font-size: 1.3rem;
-    line-height: 1.7;
-    margin: 0;
-    padding-block: 0;
+  circle {
+    transition: transform 600ms;
+    transform-origin: center;
+    transform-box: fill-box;
+    & + circle {
+      transform: scale(0);
+    }
   }
 }
 
@@ -292,11 +304,17 @@ body {
   @include marginInline();
   & > img {
     border-radius: 50%;
-    outline: 0.5rem solid var(--secondary);
-    outline-offset: 7px;
+    outline: 0.4em solid var(--secondary);
+    outline-offset: 0.3em;
     width: 10rem;
-    margin: 0 4em 2em 0;
+    margin: 0.7em 2.7em 2.7em 0.7em;
     grid-area: 🟢;
+    box-shadow: 0px 0px 161px -10px var(--primary);
+    transition: scale 150ms ease-in;
+
+    &:hover {
+      scale: 1.1;
+    }
   }
 
   .links {
@@ -311,46 +329,47 @@ body {
 
   h1 {
     font-size: 2rem;
-    margin: 0;
-    height: min-content;
   }
 
   & > div {
     display: flex;
-
-    & > * {
-      margin-inline-start: 20px;
+    gap: 1em;
+    & > div {
+      display: flex;
+      gap: 0.25em;
     }
+  }
+
+  svg {
+    height: 1.3rem;
+    width: 1.3rem;
   }
 
   p {
     margin: 0;
-    svg {
-      max-height: 1.3rem;
-      max-width: 1.3rem;
+  }
+
+  svg {
+    transition: transform 600ms ease-in-out;
+    
+    &:has(~a:hover){
+      transform: rotate(2.2turn);
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--on-secondary-container-2);
+
+    &:hover,
+    &:focus {
+      background-color: #7272724d;
     }
 
-    a {
-      text-decoration: none;
-      color: var(--on-secondary-container-2);
-
-      svg {
-        transition: transform 600ms;
-      }
-
-      &:hover,
-      &:focus {
-        background-color: rgba(126, 126, 126, 0.459);
-        svg {
-          transform: rotate(2turn);
-        }
-      }
-
-      &:focus-visible {
-        outline: var(--primary) solid 0.4rem;
-        outline-offset: 0.4rem;
-        border-radius: 100px;
-      }
+    &:focus-visible {
+      outline: var(--primary) solid 0.4rem;
+      outline-offset: 0.4rem;
+      border-radius: 100px;
     }
   }
 }
@@ -364,13 +383,16 @@ body {
 .aboutMe {
   grid-area: 📄;
   border-top: #5b5b5b solid 1px;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  width: fit-content;
 }
 
 .links {
   display: grid;
   justify-content: center;
+  margin-inline-start: auto;
   gap: 1rem;
-  padding: 1rem 2rem;
   grid-auto-flow: column;
   align-self: center;
 
@@ -401,6 +423,21 @@ body {
     transition: transform 500ms;
     margin: 0.8em;
   }
+}
+.new {
+  position: relative;
+}
+.new::after {
+  content: "new";
+  position: absolute;
+  bottom: 0px;
+  right: -10px;
+  background-color: var(--on-secondary);
+  color: var(--secondary);
+  outline: 2px solid var(--secondary);
+  padding-inline: 0.25em;
+  border-radius: 100px;
+  font-weight: bold;
 }
 
 #ST,
@@ -475,6 +512,10 @@ body {
   }
 }
 
+footer .links {
+  margin-block: 2em 5%;
+}
+
 @media screen and (max-width: 850px) {
   #main {
     grid-template-areas:
@@ -497,7 +538,7 @@ body {
       display: none;
     }
   }
-  
+
   .🐷_SVG {
     min-width: 110vw;
   }
