@@ -24,12 +24,12 @@ $lightBackground: #fbfdf7;
   cursor: pointer;
   position: absolute;
 
-  &:focus-visible ~ #page label {
+  &:focus-visible~#page label {
     outline: var(--primary) solid 0.5rem;
     outline-offset: 1rem;
   }
 
-  & ~ #page {
+  &~#page {
     --background: #1a1c19;
     --on-background: #e2e3de;
     --primary: #5bdf83;
@@ -48,7 +48,7 @@ $lightBackground: #fbfdf7;
 }
 
 @media (prefers-color-scheme: light) {
-  #theme ~ #page .themeToggle {
+  #theme~#page .themeToggle {
     rect {
       transform: rotate(2turn) scale(0);
     }
@@ -56,14 +56,14 @@ $lightBackground: #fbfdf7;
     circle {
       transform: scale(3);
 
-      & + circle {
+      &+circle {
         visibility: visible;
         transform: scale(2);
       }
     }
   }
 
-  #theme ~ #page {
+  #theme~#page {
     //chrome :(
     --background: #fbfdf7;
     --on-background: #1a1c19;
@@ -81,10 +81,11 @@ $lightBackground: #fbfdf7;
     // --on-tertiary-container: #001b3c;
   }
 
-  #theme:checked ~ #page .themeToggle {
+  #theme:checked~#page .themeToggle {
     rect {
       transform: initial;
-      & + rect {
+
+      &+rect {
         transform: rotate(45deg);
       }
     }
@@ -92,13 +93,13 @@ $lightBackground: #fbfdf7;
     circle {
       transform: scale(1);
 
-      & + circle {
+      &+circle {
         transform: scale(0);
       }
     }
   }
 
-  #theme:checked ~ #page {
+  #theme:checked~#page {
     --background: #1a1c19;
     --on-background: #e2e3de;
     --primary: #5bdf83;
@@ -118,7 +119,7 @@ $lightBackground: #fbfdf7;
 
 @media (prefers-color-scheme: dark) {
   #theme:checked {
-    & ~ #page .toggle > svg {
+    &~#page .toggle>svg {
       rect {
         transform: rotate(2turn) scale(0);
       }
@@ -126,14 +127,14 @@ $lightBackground: #fbfdf7;
       circle {
         transform: scale(3);
 
-        & + circle {
+        &+circle {
           visibility: visible;
           transform: scale(2);
         }
       }
     }
 
-    & ~ #page {
+    &~#page {
       --background: #fbfdf7;
       --on-background: #1a1c19;
       --primary: #006d31;
@@ -194,6 +195,7 @@ abbr {
 }
 
 $lighter: lighten($background, 10);
+
 ::-webkit-scrollbar {
   // dark mode
   width: 0.8rem;
@@ -205,10 +207,13 @@ $lighter: lighten($background, 10);
     border: $lighter solid 2px;
   }
 }
+
 $darker: darken($lightBackground, 10);
+
 body:has(#theme:not(:checked))::-webkit-scrollbar {
   // light mode
   background-color: $darker;
+
   &-thumb {
     background: #006d31;
     border-radius: 16px;
@@ -232,6 +237,7 @@ body:has(#theme:not(:checked))::-webkit-scrollbar {
   body:has(#theme:checked)::-webkit-scrollbar {
     // light mode
     background-color: $darker;
+
     &-thumb {
       background: #006d31;
       border-radius: 16px;
@@ -249,7 +255,9 @@ body {
 // aside {
 //   border-radius: $borderRadius;
 //   margin-top: 2.5%;
-//   margin-inline: 10%;
+//   width: 90vw;
+//   max-width: 1100px;
+//   margin-inline: auto;
 //   padding: 2em;
 //   background-color: var(--secondary-container);
 //   color: var(--on-secondary-container);
@@ -272,7 +280,8 @@ body {
   rect {
     transition: transform 500ms;
     transform-origin: center;
-    & + rect {
+
+    &+rect {
       transform: rotate(45deg);
       transition: transform 450ms;
     }
@@ -282,7 +291,8 @@ body {
     transition: transform 600ms;
     transform-origin: center;
     transform-box: fill-box;
-    & + circle {
+
+    &+circle {
       transform: scale(0);
     }
   }
@@ -300,9 +310,10 @@ body {
     "📄 📄 🔗";
   grid-template-columns: min-content auto auto;
 
-  padding-block-start: 5%;
+  padding-block-start: 2.5%;
   @include marginInline();
-  & > img {
+
+  &>img {
     border-radius: 50%;
     outline: 0.4em solid var(--secondary);
     outline-offset: 0.3em;
@@ -331,10 +342,11 @@ body {
     font-size: 2rem;
   }
 
-  & > div {
+  &>div {
     display: flex;
     gap: 1em;
-    & > div {
+
+    &>div {
       display: flex;
       gap: 0.25em;
     }
@@ -351,8 +363,8 @@ body {
 
   svg {
     transition: transform 600ms ease-in-out;
-    
-    &:has(~a:hover){
+
+    &:has(~a:hover) {
       transform: rotate(2.2turn);
     }
   }
@@ -424,9 +436,11 @@ body {
     margin: 0.8em;
   }
 }
+
 .new {
   position: relative;
 }
+
 .new::after {
   content: "new";
   position: absolute;
@@ -458,26 +472,31 @@ body {
     background-color: #3a0092;
     color: #cfbcff;
   }
-  & > div > svg {
+
+  &>div>svg {
     max-width: 15em;
     rotate: 15deg;
     margin-block: 2em;
+
     ::selection {
       color: #3a0092;
       background-color: #cfbcff;
     }
   }
 }
+
 .goTo {
   display: flex;
   flex-direction: row;
   width: fit-content;
   margin: 0.14em 0 0 auto;
+
   p {
     align-items: flex-end;
     margin: 0;
     padding-inline-end: 0.5em;
   }
+
   svg {
     fill: #cfbcff;
     background-color: #3a0092;
@@ -526,7 +545,7 @@ footer .links {
 
     grid-template-columns: auto;
 
-    & > img {
+    &>img {
       margin: 3em auto;
     }
   }
@@ -547,6 +566,7 @@ footer .links {
     margin-inline: auto;
   }
 }
+
 @media screen and (max-width: 433px) {
   .goTo {
     color: #cfbcff;
@@ -559,6 +579,7 @@ footer .links {
     p {
       padding: 0.1em 0.5em;
     }
+
     svg {
       display: none;
     }
@@ -590,14 +611,16 @@ footer .links {
     p {
       display: none;
     }
+
     svg {
       display: unset;
     }
   }
 
-  .info > div {
+  .info>div {
     display: unset;
-    & > * {
+
+    &>* {
       margin: 0;
     }
   }
@@ -609,10 +632,11 @@ footer .links {
 
 @media screen and (max-width: 230px) {
   #main {
-    & > img {
+    &>img {
       width: 70vw;
     }
   }
+
   .links {
     max-width: 95vw;
     overflow-x: auto;
