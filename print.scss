@@ -1,0 +1,284 @@
+$borderRadius: 32px;
+$background: #1a1c19;
+$on-background: #e2e3de;
+$primary: #5bdf83;
+$on-primary: #003916;
+$secondary-container: #394b3b;
+$on-secondary-container: #d3e8d2;
+$secondary-container-2: #233425;
+$on-secondary-container-2: #b7ccb7;
+$secondary: #b7ccb7;
+$on-secondary: #233425;
+$tertiary-container: #204d56;
+
+$lightBackground: #fbfdf7;
+
+
+#theme {
+    display: none;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    --background: #fff;
+    --on-background: #1a1c19;
+    --primary: #006d31;
+    --on-primary: #fff;
+    --secondary-container: #d3e8d2;
+    --on-secondary-container: #0e1f12;
+    --secondary-container-2: #b7ccb7;
+    --on-secondary-container-2: #233425;
+    --secondary: #516352;
+    --on-secondary: #fff;
+
+}
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+
+
+#page {
+    background-color: var(--background);
+    color: var(--on-background);
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+}
+
+abbr {
+    text-decoration: none;
+}
+
+::selection {
+    color: var(--on-primary);
+    background-color: var(--primary);
+}
+
+
+
+body {
+    margin: 0;
+    display: grid;
+    min-height: 100vh;
+}
+
+// aside {
+//   border-radius: $borderRadius;
+//   margin-top: 2.5%;
+//   width: 90vw;
+//   max-width: 1100px;
+//   margin-inline: auto;
+//   padding: 2em;
+//   background-color: var(--secondary-container);
+//   color: var(--on-secondary-container);
+// }
+
+.info p {
+    font-size: 1.3rem;
+}
+
+.themeToggle {
+    display: none;
+}
+
+#main {
+    display: grid;
+    grid-template-areas:
+        "🟢 ℹ️ ℹ️"
+        "📄 📄 🔗";
+    grid-template-columns: min-content auto auto;
+
+    padding-block-start: 2.5%;
+
+    &>img {
+        border-radius: 50%;
+        outline: 0.4em solid var(--secondary);
+        outline-offset: 0.3em;
+        width: 10rem;
+        margin: 0.7em 2.7em 2.7em 0.7em;
+        grid-area: 🟢;
+        box-shadow: 0px 0px 161px -10px var(--primary);
+    }
+
+    .links {
+        grid-area: 🔗;
+    }
+}
+
+.info {
+    grid-area: ℹ️;
+    display: grid;
+    align-self: center;
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    &>div {
+        display: flex;
+        gap: 1em;
+
+        &>div {
+            display: flex;
+            gap: 0.25em;
+        }
+    }
+
+    svg {
+        height: 1.3rem;
+        width: 1.3rem;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--on-secondary-container-2);
+    }
+}
+
+.aboutMe {
+    grid-area: 📄;
+    border-top: #5b5b5b solid 1px;
+    font-size: 1.3rem;
+    line-height: 1.7;
+    width: fit-content;
+}
+
+.links {
+    display: grid;
+    justify-content: center;
+    margin-inline-start: auto;
+    gap: 1rem;
+    grid-auto-flow: column;
+    align-self: center;
+
+    a {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        background-color: var(--secondary);
+        display: flex;
+        position: relative;
+    }
+
+    svg {
+        margin: 0.8em;
+    }
+
+
+
+    a::after {
+        position: absolute;
+        bottom: 0px;
+        right: 20px;
+        background-color: var(--on-secondary);
+        color: var(--secondary);
+        outline: 2px solid var(--secondary);
+        padding-inline: 0.2em;
+        border-radius: 100px;
+        font-weight: bold;
+    }
+
+    .Mastodon::after {
+        content: "toot.io/paol";
+    }
+.Discord::after {
+    content: "paol#7272";
+}
+    .GitHub::after {
+        content: "Paol-M";
+    }
+}
+
+#ST,
+#🐷 {
+    border-radius: $borderRadius;
+    padding: 2em 1em;
+    margin-block-start: 1em;
+    font-size: 2em;
+    position: relative;
+}
+
+#ST {
+    background-color: #cfbcff;
+    color: #3a0092;
+
+    ::selection {
+        background-color: #3a0092;
+        color: #cfbcff;
+    }
+
+    &>div>svg {
+        max-width: 15em;
+        rotate: 15deg;
+        margin-block: 2em;
+
+        ::selection {
+            color: #3a0092;
+            background-color: #cfbcff;
+        }
+    }
+
+    .goTo p::after {
+        content: " paol-m.github.io/SimpleType";
+        font-size: 0.8em;
+    }
+}
+
+.goTo {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    margin: 0.14em 0 0 auto;
+
+    p {
+        align-items: flex-end;
+        margin: 0;
+        padding-inline-end: 0.5em;
+    }
+
+    svg {
+        display: none;
+    }
+
+}
+
+#🐷 {
+    img {
+        display: none;
+    }
+
+    .goTo {
+        margin-top: 1em;
+
+        p::after {
+            content: " paol-m.github.io/pet";
+            font-size: 0.8em;
+        }
+    }
+}
+
+.🐷_SVG {
+    height: 400px;
+}
+
+footer {
+    display: none;
+}
