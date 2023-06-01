@@ -437,15 +437,15 @@ body {
   }
 }
 
-.new {
+.Mastodon {
   position: relative;
 }
 
-.new::after {
-  content: "new";
+.Mastodon::after {
+  content: "Mastodon";
   position: absolute;
-  bottom: 0px;
-  right: -10px;
+  bottom: -10px;
+  left: -10px;
   background-color: var(--on-secondary);
   color: var(--secondary);
   outline: 2px solid var(--secondary);
@@ -465,25 +465,157 @@ body {
 }
 
 #ST {
-  background-color: #cfbcff;
-  color: #3a0092;
+  overflow: hidden; // animation color splash
+
+  * {
+    position: relative;
+    z-index: 1;
+  }
 
   ::selection {
-    background-color: #3a0092;
-    color: #cfbcff;
+    color: #d5baff;
+    background-color: #3d1c6f
   }
 
   &>div>svg {
-    max-width: 15em;
-    rotate: 15deg;
+    max-width: 20em;
     margin-block: 2em;
 
     ::selection {
-      color: #3a0092;
-      background-color: #cfbcff;
+      background-color: #d5baff;
+      color: #3d1c6f;
     }
   }
 }
+
+// ST. Animation start
+
+
+#ST {
+  --animation: ST 1000ms 2000ms forwards;
+}
+
+#ST h2 {
+  --animation: ST 1000ms 2000ms forwards;
+  // transition: transform 2000ms;
+  // transform: scale(2) translateX(105%);
+  // overflow: hidden;
+  display: flex;
+  width: fit-content;
+}
+
+#ST .goTo p {
+  animation: var(--animation);
+}
+
+#ST h2>span {
+  transition: transform 0ms, opacity 200ms;
+  z-index: -4;
+}
+
+#ST p {
+  animation: var(--animation);
+}
+
+.S {
+  color: #3d1c6f;
+  background-color: #d5baff;
+  z-index: 100;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: #d5baff;
+    inset: 0;
+    animation: colorSplash 1000ms 2800ms forwards;
+    z-index: -1;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    left: -100%;
+    background-color: var(--background);
+    z-index: -2;
+    animation: hider 0ms 2800ms forwards;
+  }
+}
+
+@keyframes hider {
+  to {
+    scale: 0;
+  }
+}
+
+@keyframes colorSplash {
+
+  1% {
+    z-index: -100;
+  }
+
+  50% {
+    transform: scale(40 2);
+    z-index: -100;
+  }
+
+  // translateX(clamp(0px, calc(38vw + 50%), 550px)) in case you want to center it first 🤷‍♂️
+  to {
+    transform: translateX(clamp(0px, calc(38vw + 50%), 550px)) scale(45);
+    z-index: -100;
+  }
+}
+
+.imple {
+  transform: translateX(-4.7ch);
+}
+
+.T {
+  transform: translateX(-125.4px);
+  z-index: 100;
+  animation: var(--animation);
+}
+
+.ype {
+  transform: translate(-9ch);
+}
+
+.imple,
+.ype {
+  opacity: 0;
+  z-index: 8;
+  animation: var(--animation);
+}
+
+.dot {
+  transform: translateX(-208.1px);
+  animation: var(--animation);
+}
+
+@keyframes ST {
+0% {
+  color: var(--on-background);
+}
+
+
+  90% {
+    transform: translateX(0);
+    opacity: 1;
+    z-index: 1;
+    color: currentColor;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+    z-index: 1;
+    color: #3d1c6f;
+    
+  }
+}
+
+// ST. animation end
 
 .goTo {
   display: flex;
@@ -498,15 +630,17 @@ body {
   }
 
   svg {
-    fill: #cfbcff;
-    background-color: #3a0092;
+    fill: #d5baff;
+    background-color: #3d1c6f;
     border-radius: 50%;
-    scale: 1.3;
+    width: 63px;
+    height: 63px;
+    // scale: 1.3;
     transition: translate 100ms ease-in;
   }
 
   &:hover svg {
-    translate: 5px 0;
+    translate: 10px 0;
   }
 }
 
@@ -522,8 +656,10 @@ body {
     top: -10px;
     right: 30px;
   }
+
   .goTo {
     margin-top: 1em;
+
     svg {
       background-color: var(--secondary);
       fill: var(--on-secondary);
@@ -569,8 +705,6 @@ footer .links {
 
 @media screen and (max-width: 433px) {
   .goTo {
-    color: #cfbcff;
-    background-color: #3a0092;
     border-radius: $borderRadius;
     font-variant-caps: all-small-caps;
     letter-spacing: 0.2rem;
@@ -582,6 +716,14 @@ footer .links {
 
     svg {
       display: none;
+    }
+  }
+
+  #ST .goTo {
+    background-color: #3d1c6f;
+
+    p {
+      color: #d5baff !important;
     }
   }
 
