@@ -40,10 +40,10 @@ $lightBackground: #fbfdf7;
     --on-secondary-container-2: #b7ccb7;
     --secondary: #b7ccb7;
     --on-secondary: #233425;
-    // --tertiary: #a4c8ff;
-    // --on-tertiary: #003061;
-    // --tertiary-container: #004789;
-    // --on-tertiary-container: #d3e3ff;
+    --tertiary: #a4c8ff;
+    --on-tertiary: #003061;
+    --tertiary-container: #004789;
+    --on-tertiary-container: #d3e3ff;
   }
 }
 
@@ -75,10 +75,10 @@ $lightBackground: #fbfdf7;
     --on-secondary-container-2: #233425;
     --secondary: #516352;
     --on-secondary: #fff;
-    // --tertiary: #205fa6;
-    // --on-tertiary: #fff;
-    // --tertiary-container: #d3e3ff;
-    // --on-tertiary-container: #001b3c;
+    --tertiary: #205fa6;
+    --on-tertiary: #fff;
+    --tertiary-container: #d3e3ff;
+    --on-tertiary-container: #001b3c;
   }
 
   #theme:checked~#page .themeToggle {
@@ -110,10 +110,10 @@ $lightBackground: #fbfdf7;
     --on-secondary-container-2: #b7ccb7;
     --secondary: #b7ccb7;
     --on-secondary: #233425;
-    // --tertiary: #a4c8ff;
-    // --on-tertiary: #003061;
-    // --tertiary-container: #004789;
-    // --on-tertiary-container: #d3e3ff;
+    --tertiary: #a4c8ff;
+    --on-tertiary: #003061;
+    --tertiary-container: #004789;
+    --on-tertiary-container: #d3e3ff;
   }
 }
 
@@ -185,10 +185,6 @@ a {
   color: inherit;
 }
 
-abbr {
-  text-decoration: none;
-}
-
 ::selection {
   color: var(--on-primary);
   background-color: var(--primary);
@@ -253,14 +249,19 @@ body {
 }
 
 // aside {
-//   border-radius: $borderRadius;
-//   margin-top: 2.5%;
 //   width: 90vw;
-//   max-width: 1100px;
-//   margin-inline: auto;
-//   padding: 2em;
-//   background-color: var(--secondary-container);
-//   color: var(--on-secondary-container);
+//   width: 100%;
+//   padding: 1em 1.5em;
+//   // background-color: var(--secondary-container);
+//   // color: var(--on-secondary-container);
+//   background-color: #fffb8d;
+//   color: #021a07;
+
+//   p,
+//   h2 {
+//     max-width: 1100px;
+//     margin-inline: auto;
+//   }
 // }
 
 .info p {
@@ -321,11 +322,6 @@ body {
     margin: 0.7em 2.7em 2.7em 0.7em;
     grid-area: 🟢;
     box-shadow: 0px 0px 161px -10px var(--primary);
-    transition: scale 150ms ease-in;
-
-    &:hover {
-      scale: 1.1;
-    }
   }
 
   .links {
@@ -454,23 +450,27 @@ body {
   font-weight: bold;
 }
 
-#ST,
-#🐷 {
+#trivia {
+  display: grid;
+  grid-template-areas:
+    "ST 🐷"
+    "🍕 blog";
+  grid-gap: 1rem;
+  margin-block-start: 1.5em;
+  @include marginInline();
+}
+
+#trivia>section {
   border-radius: $borderRadius;
   padding: 2em 1em;
-  margin-block-start: 1em;
-  @include marginInline();
-  font-size: 2em;
+  font-size: 1em;
   position: relative;
+  // width: 500px;
 }
 
 #ST {
-  overflow: hidden; // animation color splash
-
-  * {
-    position: relative;
-    z-index: 1;
-  }
+  background-color: #d5baff;
+  color: #3d1c6f;
 
   ::selection {
     color: #d5baff;
@@ -488,134 +488,37 @@ body {
   }
 }
 
-// ST. Animation start
+#🍕 {
+  grid-area: 🍕;
+  background-color: #ce3636;
+  color: #f4e9e9;
 
-
-#ST {
-  --animation: ST 1000ms 2000ms forwards;
-}
-
-#ST h2 {
-  --animation: ST 1000ms 2000ms forwards;
-  // transition: transform 2000ms;
-  // transform: scale(2) translateX(105%);
-  // overflow: hidden;
-  display: flex;
-  width: fit-content;
-}
-
-#ST .goTo p {
-  animation: var(--animation);
-}
-
-#ST h2>span {
-  transition: transform 0ms, opacity 200ms;
-  z-index: -4;
-}
-
-#ST p {
-  animation: var(--animation);
-}
-
-.S {
-  color: #3d1c6f;
-  background-color: #d5baff;
-  z-index: 100;
-  position: relative;
-
-  &::after {
-    content: "";
-    position: absolute;
-    background-color: #d5baff;
-    inset: 0;
-    animation: colorSplash 1000ms 2800ms forwards;
-    z-index: -1;
+  ::selection {
+    background-color: #f4e9e9;
+    color: #6f1818;
   }
 
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    left: -100%;
-    background-color: var(--background);
-    z-index: -2;
-    animation: hider 0ms 2800ms forwards;
+  svg {
+    fill: #ab1d1d;
+    background-color: #f4e9e9;
   }
 }
 
-@keyframes hider {
-  to {
-    scale: 0;
-  }
-}
+#blog {
+  grid-area: blog;
+  background-color: var(--tertiary);
+  color: var(--on-tertiary);
 
-@keyframes colorSplash {
-
-  1% {
-    z-index: -100;
+  ::selection {
+    background-color: var(--on-tertiary);
+    color: var(--tertiary);
   }
 
-  50% {
-    transform: scale(40 2);
-    z-index: -100;
-  }
-
-  // translateX(clamp(0px, calc(38vw + 50%), 550px)) in case you want to center it first 🤷‍♂️
-  to {
-    transform: translateX(clamp(0px, calc(38vw + 50%), 550px)) scale(45);
-    z-index: -100;
+  svg {
+    fill: var(--on-tertiary-container);
+    background-color: var(--tertiary-container);
   }
 }
-
-.imple {
-  transform: translateX(-4.7ch);
-}
-
-.T {
-  transform: translateX(-125.4px);
-  z-index: 100;
-  animation: var(--animation);
-}
-
-.ype {
-  transform: translate(-9ch);
-}
-
-.imple,
-.ype {
-  opacity: 0;
-  z-index: 8;
-  animation: var(--animation);
-}
-
-.dot {
-  transform: translateX(-208.1px);
-  animation: var(--animation);
-}
-
-@keyframes ST {
-0% {
-  color: var(--on-background);
-}
-
-
-  90% {
-    transform: translateX(0);
-    opacity: 1;
-    z-index: 1;
-    color: currentColor;
-  }
-
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-    z-index: 1;
-    color: #3d1c6f;
-    
-  }
-}
-
-// ST. animation end
 
 .goTo {
   display: flex;
@@ -630,13 +533,12 @@ body {
   }
 
   svg {
-    fill: #d5baff;
+    fill: #e9dbff;
     background-color: #3d1c6f;
     border-radius: 50%;
     width: 63px;
     height: 63px;
-    // scale: 1.3;
-    transition: translate 100ms ease-in;
+    transition: translate 90ms ease-in;
   }
 
   &:hover svg {
@@ -667,6 +569,7 @@ body {
   }
 }
 
+
 footer .links {
   margin-block: 2em 5%;
 }
@@ -686,6 +589,14 @@ footer .links {
     }
   }
 
+  #trivia {
+    display: block;
+  }
+
+  #trivia>section:not(:first-child) {
+    margin-top: 1em;
+  }
+
   #🐷 {
     overflow: hidden;
 
@@ -695,7 +606,7 @@ footer .links {
   }
 
   .🐷_SVG {
-    min-width: 110vw;
+    min-width: 10vw;
   }
 
   .links {

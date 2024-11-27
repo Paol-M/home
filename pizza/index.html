@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pizza Calculations</title>
+    <style>
+      html {
+        font-family: system-ui;
+      }
+      body {
+        width: 90vw;
+        max-width: 1100px;
+        margin-inline: auto;
+      }
+
+      footer{
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>You cannot spell pizza without pi.</h1>
+    <div>
+      <h2>Pizza 1</h2>
+      <input
+        placeholder="Diamitar"
+        type="number"
+        id="number1"
+        name="number1"
+        min="0"
+        required
+      />
+      <select id="unit1" name="unit1" required>
+        <option value="cm">cm</option>
+        <option value="inches">inches</option>
+        <option value="light-year">light-years</option>
+      </select>
+
+      <h2>Pizza 2</h2>
+      <input
+        placeholder="Diamitar"
+        type="number"
+        id="number2"
+        name="number2"
+        min="0"
+        required
+      />
+      <select id="unit2" name="unit2" required>
+        <option value="cm">cm</option>
+        <option value="inches">inches</option>
+        <option value="light-year">light-years</option>
+      </select>
+    </div>
+    <div>
+      <p id="output">Please enter values for both pizzas.</p>
+
+    </div>
+    <svg id="svg" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+      <circle
+        id="circle1"
+        r="0"
+        cx="50"
+        cy="50"
+        fill="black"
+      />
+      <circle
+        r="45"
+        cx="50"
+        cy="50"
+        fill="none"
+        stroke="black"
+        stroke-width="3"
+      />
+    </svg>
+
+<footer>
+    <p>Made by <a href="https://paol-m.github.io">Paol</a></p>
+</footer>
+
+    <script>
+      let value1, value2;
+      document.getElementById("number1").addEventListener("input", function () {
+        value1 = parseFloat(this.value);
+        calc();
+      });
+
+      document.getElementById("unit1").addEventListener("change", function () {
+        calc();
+      });
+
+      document.getElementById("number2").addEventListener("input", function () {
+        value2 = parseFloat(this.value);
+        calc();
+      });
+
+      document.getElementById("unit2").addEventListener("change", function () {
+        calc();
+      });
+
+      const paragraph = document.getElementById("output");
+      const firstCircle = document.getElementById("circle1");
+
+      function calc() {
+        if (value1 === undefined || value2 === undefined) {
+          paragraph.innerText = "Please enter values for both pizzas.";
+          return;
+        }
+
+        const unit1 = document.getElementById("unit1").value;
+        const unit2 = document.getElementById("unit2").value;
+
+        let radius1 = value1;
+        let radius2 = value2;
+
+        if (unit1 === "inches") {
+          radius1 *= 2.54;
+        } else if (unit1 === "light-year") {
+          radius1 *= 946073047258080000;
+        }
+        if (unit2 === "inches") {
+          radius2 *= 2.54;
+        } else if (unit2 === "light-year") {
+          radius2 *= 946073047258080000;
+        }
+
+        const area1 = Math.PI * Math.pow(radius1, 2);
+        const area2 = Math.PI * Math.pow(radius2, 2);
+
+        let biggerPizza, smallerPizza, ratio;
+
+        if (area1 > area2) {
+          biggerPizza = "Pizza 1";
+          smallerPizza = "Pizza 2";
+          ratio = area1 / area2;
+          firstCircle.setAttribute("r", (radius2 / radius1) * 45);
+        } else if (area2 > area1) {
+          biggerPizza = "Pizza 2";
+          smallerPizza = "Pizza 1";
+          ratio = area2 / area1;
+          firstCircle.setAttribute("r", (radius1 / radius2) * 45);
+        } else {
+          paragraph.innerText = "Both pizzas are the same size.";
+          firstCircle.setAttribute("r", 45);
+          return;
+        }
+
+        paragraph.innerText = `${biggerPizza} (white) is ${ratio.toFixed(2)} times bigger than ${smallerPizza} (black).`;
+    }
+    </script>
+  </body>
+</html>
