@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "katex": "^0.16.18"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

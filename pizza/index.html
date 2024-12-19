@@ -10,11 +10,10 @@
       }
       body {
         width: 90vw;
-        max-width: 1100px;
+        max-width: 800px;
         margin-inline: auto;
       }
-
-      footer{
+      footer {
         text-align: center;
       }
     </style>
@@ -36,7 +35,6 @@
         <option value="inches">inches</option>
         <option value="light-year">light-years</option>
       </select>
-
       <h2>Pizza 2</h2>
       <input
         placeholder="Diamitar"
@@ -54,16 +52,9 @@
     </div>
     <div>
       <p id="output">Please enter values for both pizzas.</p>
-
     </div>
     <svg id="svg" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
-      <circle
-        id="circle1"
-        r="0"
-        cx="50"
-        cy="50"
-        fill="black"
-      />
+      <circle id="circle1" r="0" cx="50" cy="50" fill="black" />
       <circle
         r="45"
         cx="50"
@@ -74,14 +65,15 @@
       />
     </svg>
 
-<footer>
-    <p>Made by <a href="https://paol-m.github.io">Paol</a></p>
-</footer>
+    <footer>
+      <p>Made by <a href="https://paol-m.github.io">Paol</a> · <a href="about">About</a></p>
+    </footer>
 
     <script>
       let value1, value2;
       document.getElementById("number1").addEventListener("input", function () {
         value1 = parseFloat(this.value);
+        this.value = this.value.replace(/(?![0-9.])./gmi, '');
         calc();
       });
 
@@ -91,6 +83,7 @@
 
       document.getElementById("number2").addEventListener("input", function () {
         value2 = parseFloat(this.value);
+        this.value = this.value.replace(/(?![0-9.])./gmi, '');
         calc();
       });
 
@@ -118,14 +111,15 @@
         } else if (unit1 === "light-year") {
           radius1 *= 946073047258080000;
         }
+
         if (unit2 === "inches") {
           radius2 *= 2.54;
         } else if (unit2 === "light-year") {
           radius2 *= 946073047258080000;
         }
 
-        const area1 = Math.PI * Math.pow(radius1, 2);
-        const area2 = Math.PI * Math.pow(radius2, 2);
+        area1 = radius1*radius1;
+        area2 = radius2*radius2;
 
         let biggerPizza, smallerPizza, ratio;
 
@@ -145,8 +139,10 @@
           return;
         }
 
-        paragraph.innerText = `${biggerPizza} (white) is ${ratio.toFixed(2)} times bigger than ${smallerPizza} (black).`;
-    }
+        paragraph.innerText = `${biggerPizza} (white) is ${ratio.toFixed(
+          2
+        )} times bigger than ${smallerPizza} (black).`;
+      }
     </script>
   </body>
 </html>

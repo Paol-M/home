@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/katex/dist/katex.min.css">
+    <title>About - Pizza Calculations</title>
+    <style>
+        html {
+            font-family: system-ui;
+        }
+
+        body {
+            width: 90vw;
+            max-width: 800px;
+            margin-inline: auto;
+        }
+
+        footer {
+            text-align: center;
+        }
+    </style>
+
+    <script src="index.js" type="module"></script>
+</head>
+
+
+<h1>About Pizza Calculations</h1>
+<p><a href="../">Pizza Calculations</a> is a very simple web app for you to compare the relative size difference between two pizzas or any
+    circular objects.</p>
+<h2>Formula</h2>
+<p>$$ \left( \frac{\text{Big pizza}}{\text{Small pizza}} \right)^2 $$</p>
+<h3>Why?</h3>
+<p>The area of a circle is given by \(\pi R^2\). To compare the areas of two pizzas, we use the following formulas:
+    <br><br>
+    \(A_1 = \pi R^2\) and \(A_2 = \pi r^2\)
+    <br><br>
+    Therefore, the ratio of the areas is \(\frac{A_1}{A_2}\), where \(A_1 \geq A_2\):
+    <br>
+    $$\frac{\pi R^2}{\pi r^2} = \frac{\cancel{\pi} R^2}{\cancel{\pi} r^2} = \frac{R^2}{r^2} = \boxed{{\left(\frac{R}{r}\right)}^2} $$
+    <br>
+    This formula also yields the correct ratio when the diameter, instead of radius, is used on both sides, since the diameter is simply \(\frac{1}{2}D\) and the \(\frac{1}{2}\) on the top and bottom cancel out:
+    <br>
+    $$ \frac{R^2}{r^2} = \frac{(\frac{1}{2}D)^2}{(\frac{1}{2}d)^2} = \frac{(\cancel{\frac{1}{2}}D)^2}{(\cancel{\frac{1}{2}}d)^2} = \frac{D^2}{d^2} = \boxed{{\left(\frac{D}{d}\right)}^2} $$
+</p>
+
+<h2>Tips</h2>
+<ul>
+    <li>If you don't eat the crust, subtract the \(\text{crust width} \times 2\) from the diameter.</li>
+    <li>If both fields are set to the same unit, you can use whatever unit you want (\(mm\), \(ft\), \(m\), etc.) and
+        still end up with the right calculation.</li>
+    <li>It is probably easier to remember the simple formula \(\left( \frac{\text{Big pizza}}{\text{Small pizza}}
+        \right)^2\) than to remember the page's address.</li>
+</ul>
+
+<footer>
+    <p>Made by <a href="https://paol-m.github.io">Paol</a></p>
+</footer>
+</body>
+
+</html>

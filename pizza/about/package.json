@@ -1,0 +1,16 @@
+{
+  "name": "my-katex-project",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "http-server ."
+  },
+  "devDependencies": {
+    "http-server": "^0.12.3",
+    "katex": "^0.16.18"
+  },
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
