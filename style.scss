@@ -245,6 +245,9 @@ body:has(#theme:not(:checked))::-webkit-scrollbar {
 body {
   margin: 0;
   display: grid;
+}
+
+#page {
   min-height: 100vh;
 }
 
@@ -393,7 +396,7 @@ body {
   border-top: #5b5b5b solid 1px;
   font-size: 1.3rem;
   line-height: 1.7;
-  width: fit-content;
+  width: 100%;
 }
 
 .links {
@@ -641,6 +644,16 @@ footer .links {
   #🐷 .goTo {
     color: var(--on-secondary);
     background-color: var(--secondary);
+  }
+
+  #blog .goTo {
+    background-color: var(--on-tertiary);
+    color: var(--tertiary);
+  }
+
+  #🍕 .goTo {
+    background-color: #f4e9e9;
+    color: #ce3636;
   }
 }
 
